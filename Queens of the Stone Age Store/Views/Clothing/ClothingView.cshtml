@@ -1,0 +1,145 @@
+﻿@model Queens_of_the_Stone_Age_Store.Models.ClothingViewModel
+@using Queens_of_the_Stone_Age_Store.Models
+@{
+    ViewBag.Title = "ClothingView";
+}
+
+<h2>ClothingView</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Clothing_ID</th>
+        <th>Type OF Clothing</th>
+        <th>Clothing Description</th>
+        <th>Sizes</th>
+        <th>Clothing Price</th>
+        <th>Clothing Name</th>
+    </tr>
+    @foreach (Clothing _ClothingInfo in Model.ClothingList)
+    {
+    <tr>
+        @using (Html.BeginForm("UpdateClothing", "Clothing", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.Clothing_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.Clothing_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.TypeOFClothing, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.TypeOFClothing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.ClothingDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.ClothingDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.Sizes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.Sizes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.ClothingPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.ClothingPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _ClothingInfo.ClothingName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _ClothingInfo.ClothingName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                    @Html.ActionLink("Delete", "DeleteClothing", new { Delete_Clothing = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Update" class="btn btn-info" />
+                        </div>
+                    </div>
+                </td>
+        }
+    </tr>
+    }
+    <tr>
+        @{ Clothing newClothing = new Clothing();}
+        @using (Html.BeginForm("CreateClothing", "Clothing", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.Clothing_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.Clothing_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.TypeOFClothing, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.TypeOFClothing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.ClothingDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.ClothingDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.Sizes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.Sizes, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.ClothingPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.ClothingPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newClothing.ClothingName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newClothing.ClothingName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+</table>
+

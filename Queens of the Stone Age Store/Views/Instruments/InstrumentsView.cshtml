@@ -1,0 +1,131 @@
+﻿@model Queens_of_the_Stone_Age_Store.Models.InstrumentsViewModel
+@using Queens_of_the_Stone_Age_Store.Models
+@{
+    ViewBag.Title = "InstrumentsView";
+}
+
+<h2>InstrumentsView</h2>
+<table class="table table-striped">
+    <tr>
+        <th>Instruments_ID</th>
+        <th>InstrumentName</th>
+        <th>InstrumentDescription</th>
+        <th>InstrumentPrice</th>
+        <th>BandMembers_ID</th>
+    </tr>
+    @foreach (Instruments _InstrumentsInfo in Model.InstrumentList)
+    {
+    <tr>
+        @using (Html.BeginForm("UpdateInstruments", "Instruments", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _InstrumentsInfo.Instruments_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _InstrumentsInfo.Instruments_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _InstrumentsInfo.InstrumentName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _InstrumentsInfo.InstrumentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _InstrumentsInfo.InstrumentDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _InstrumentsInfo.InstrumentDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _InstrumentsInfo.InstrumentPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _InstrumentsInfo.InstrumentPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _InstrumentsInfo.BandMembers_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _InstrumentsInfo.BandMembers_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteInstrument", new { Delete_Album = _InstrumentsInfo.Instruments_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-info"/>
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    }
+    <tr>
+        @{Instruments newInstruments = new Instruments();}
+        @using (Html.BeginForm("CreateInstrument", "Instruments", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newInstruments.Instruments_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newInstruments.Instruments_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newInstruments.InstrumentName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newInstruments.InstrumentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newInstruments.InstrumentDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newInstruments.InstrumentDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newInstruments.InstrumentPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newInstruments.InstrumentPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newInstruments.BandMembers_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newInstruments.BandMembers_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("???", "DeleteInstrument", new { Delete_Album = newInstruments.Instruments_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+</table>
+
