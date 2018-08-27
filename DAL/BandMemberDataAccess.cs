@@ -13,20 +13,20 @@ using ErrorLogger;
 
 namespace DAL
 {
-    public class AlbumDataAccess
+    public class BandMemberDataAccess
     {
         static string connectionstring = ConfigurationManager.ConnectionStrings["QotSA Store"].ConnectionString;
-        public bool DeleteAlbum(albumDAO albumToDelete)
+        public bool DeleteMember(bandmembersDAO memberToDelete)
         {
             bool yes = false;
             try
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_DeleteAlbum", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_DeleteBandMember", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@Albums_ID", albumToDelete.Albums_ID);
+                        _command.Parameters.AddWithValue("@BandMembers_ID", memberToDelete.BandMembers_ID);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         yes = true;
@@ -45,15 +45,14 @@ namespace DAL
             }
             return yes;
         }
-
-        public List<albumDAO> GetAllAlbums()
+        public List<bandmembersDAO> GetAllMembers()
         {
-            List<albumDAO> _albumlist = new List<albumDAO>();
+            List<bandmembersDAO> _MemberList = new List<bandmembersDAO>();
             try
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_ViewAlbums", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_ViewBandMembers", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
                         _connection.Open();
@@ -61,14 +60,13 @@ namespace DAL
                         {
                             while (_reader.Read())
                             {
-                                albumDAO _albumToList = new albumDAO();
-                                _albumToList.Albums_ID = _reader.GetInt32(0);
-                                _albumToList.AlbumName = _reader.GetString(1);
-                                _albumToList.AlbumDescription = _reader.GetString(2);
-                                _albumToList.AlbumPrice = _reader.GetDecimal(3);
-                                _albumToList.YearReleased = _reader.GetDateTime(4);
-                                _albumToList.NumberOfSongs = _reader.GetInt32(5);
-                                _albumlist.Add(_albumToList);
+                                bandmembersDAO _memberToList = new bandmembersDAO();
+                                _memberToList.BandMembers_ID = _reader.GetInt32(0);
+                                _memberToList.MemberName = _reader.GetString(1);
+                                _memberToList.MemberBio = _reader.GetString(2);
+                                _memberToList.DateOfBirth = _reader.GetDateTime(3);
+                                _memberToList.BirthLocation = _reader.GetString(4);
+                                _MemberList.Add(_memberToList);
                             }
                         }
                     }
@@ -79,22 +77,21 @@ namespace DAL
                 Error_Logger Log = new Error_Logger();
                 Log.Errorlogger(_Error);
             }
-            return _albumlist;
+            return _MemberList;
         }
-        public void CreateAlbum(albumDAO albumToCreate)
+        public void CreateMember(bandmembersDAO memberToCreate)
         {
             try
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_CreateAlbum", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_CreateBandMembers", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@Name", albumToCreate.AlbumName);
-                        _command.Parameters.AddWithValue("@Description", albumToCreate.AlbumDescription);
-                        _command.Parameters.AddWithValue("@Price", albumToCreate.AlbumPrice);
-                        _command.Parameters.AddWithValue("@YearReleased", albumToCreate.YearReleased);
-                        _command.Parameters.AddWithValue("@NumberOfSongs", albumToCreate.NumberOfSongs);
+                        _command.Parameters.AddWithValue("@Name", memberToCreate.MemberName);
+                        _command.Parameters.AddWithValue("@Bio", memberToCreate.MemberBio);
+                        _command.Parameters.AddWithValue("@DateOfBirth", memberToCreate.DateOfBirth);
+                        _command.Parameters.AddWithValue("@BirthLocation", memberToCreate.BirthLocation);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -108,24 +105,24 @@ namespace DAL
                 Log.Errorlogger(_Error);
             }
         }
-        public void UpdateAlbum(albumDAO albumToUpdate)
+        public void UpdateMember(bandmembersDAO memberToUpdate)
         {
             try
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_UpdateAlbums", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_UpdateBandMembers", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@Albums_ID", albumToUpdate.Albums_ID);
-                        _command.Parameters.AddWithValue("@Name", albumToUpdate.AlbumName);
-                        _command.Parameters.AddWithValue("@Description", albumToUpdate.AlbumDescription);
-                        _command.Parameters.AddWithValue("@Price", albumToUpdate.AlbumPrice);
-                        _command.Parameters.AddWithValue("@YearReleased", albumToUpdate.YearReleased);
-                        _command.Parameters.AddWithValue("@NumberOfSongs", albumToUpdate.NumberOfSongs);
+                        _command.Parameters.AddWithValue("@BandMembers_ID", memberToUpdate.BandMembers_ID);
+                        _command.Parameters.AddWithValue("@Name", memberToUpdate.MemberName);
+                        _command.Parameters.AddWithValue("@Bio", memberToUpdate.MemberBio);
+                        _command.Parameters.AddWithValue("@DateOfBirth", memberToUpdate.DateOfBirth);
+                        _command.Parameters.AddWithValue("@BirthLocation", memberToUpdate.BirthLocation);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
+
                     }
                 }
             }
@@ -135,18 +132,17 @@ namespace DAL
                 Log.Errorlogger(_Error);
             }
         }
-        public void GetAlbumID(shoppingcartDAO albumidToGet)
+        public void GetClothingID(int albumidToGet)
         {
-            int GetAlbumID = new int(); 
+            int GetClothingID = new int();
             try
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_GetAlbumsID", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_GetClothingID", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@Albums_ID", albumidToGet.Albums_ID);
-                        _command.Parameters.AddWithValue("@User_ID", albumidToGet.User_ID);
+                        _command.Parameters.AddWithValue("@Clothing_ID", albumidToGet);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();

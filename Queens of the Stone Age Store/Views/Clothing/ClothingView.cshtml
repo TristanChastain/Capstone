@@ -7,26 +7,20 @@
 <h2>ClothingView</h2>
 <table class="table table-striped">
     <tr>
-        <th>Clothing_ID</th>
         <th>Type OF Clothing</th>
         <th>Clothing Description</th>
         <th>Sizes</th>
         <th>Clothing Price</th>
         <th>Clothing Name</th>
+        <th>Delete</th>
+        <th>Update</th>
     </tr>
     @foreach (Clothing _ClothingInfo in Model.ClothingList)
     {
     <tr>
         @using (Html.BeginForm("UpdateClothing", "Clothing", FormMethod.Post))
         {
-            <td>
-                <div class="form-group">
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => _ClothingInfo.Clothing_ID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => _ClothingInfo.Clothing_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </td>
+            @Html.HiddenFor(model => _ClothingInfo.Clothing_ID)
             <td>
                 <div class="form-group">
                     <div class="col-md-10">
@@ -68,15 +62,16 @@
                 </div>
             </td>
             <td>
-                    @Html.ActionLink("Delete", "DeleteClothing", new { Delete_Clothing = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Update" class="btn btn-info" />
-                        </div>
+                @Html.ActionLink("Delete", "DeleteClothing", new { Delete_Clothing = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Send to cart", "GetClothingID", new { _GetID = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-info" />
                     </div>
-                </td>
+                </div>
+            </td>
         }
     </tr>
     }
@@ -84,6 +79,7 @@
         @{ Clothing newClothing = new Clothing();}
         @using (Html.BeginForm("CreateClothing", "Clothing", FormMethod.Post))
         {
+            @Html.HiddenFor(model => newClothing.Clothing_ID)
             <td>
                 <div class="form-group">
                     <div class="col-md-10">

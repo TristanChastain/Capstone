@@ -11,7 +11,6 @@ namespace DAL.Objects
         public int Instruments_ID { get; set; }
         public string InstrumentName { get; set; }
         public string InstrumentDescription { get; set; }
-        public decimal InstrumentPrice { get; set; }      
-        public string BandMemberName { get; set; }
+        public decimal InstrumentPrice { get; set; }
    }
 }

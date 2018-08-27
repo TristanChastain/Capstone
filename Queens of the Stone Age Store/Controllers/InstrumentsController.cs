@@ -20,12 +20,12 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             _ViewModelInstruments.InstrumentList = _mapper.InstrumentsMap(_InstrumentDataAccess.GetAllInstruments());
                 return View(_ViewModelInstruments);
         }
-        public ActionResult DeleteInstrument(int Delete_Instrument)
+        public ActionResult DeleteInstrument(int Delete_Instruments)
         {
             if ((int)Session["Role_ID"] == 3)
             {
                 instrumentsDAO _DeleteInstrument = new instrumentsDAO();
-                _DeleteInstrument.Instruments_ID = Delete_Instrument;
+                _DeleteInstrument.Instruments_ID = Delete_Instruments;
                 _InstrumentDataAccess.DeleteInstruments(_DeleteInstrument);
             }
             return RedirectToAction("InstrumentsView");
@@ -49,6 +49,14 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
                 _InstrumentDataAccess.UpdateInstrument(_recievedInstrument);
                 return RedirectToAction("InstrumentsView");
             }
+            return RedirectToAction("InstrumentsView");
+        }
+        public ActionResult GetInstrumentID(int _GetID)
+        {
+            shoppingcartDAO cartToGet = new shoppingcartDAO();
+            cartToGet.Instruments_ID = _GetID;
+            cartToGet.User_ID = (int)Session["User_ID"];
+            _InstrumentDataAccess.GetInstrumentsID(cartToGet);
             return RedirectToAction("InstrumentsView");
         }
     }

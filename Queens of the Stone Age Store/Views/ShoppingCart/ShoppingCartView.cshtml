@@ -1,0 +1,134 @@
+﻿@model Queens_of_the_Stone_Age_Store.Models.ShoppingCartViewModel
+@using Queens_of_the_Stone_Age_Store.Models
+@{
+    ViewBag.Title = "ShoppingCartView";
+}
+
+<h2>ShoppingCartView</h2>
+<table class="table table-striped">
+    <tr>
+        <th>ShoppingCart_ID</th>
+        <th>Albums_ID</th>
+        <th>Clothing_ID</th>
+        <th>Instruments_ID</th>
+        <th>User_ID</th>
+    </tr>
+    @foreach (ShoppingCart _CartInfo in Model.ShoppingCartList)
+    {
+    <tr>
+        @using (Html.BeginForm("UpdateShoppingCart", "ShoppingCart", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _CartInfo.ShoppingCart_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _CartInfo.ShoppingCart_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _CartInfo.Albums_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _CartInfo.Albums_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _CartInfo.Clothing_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _CartInfo.Clothing_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _CartInfo.Instruments_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _CartInfo.Instruments_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _CartInfo.User_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _CartInfo.User_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteShoppingCart", new { Delete_ShoppingCart = _CartInfo.ShoppingCart_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+    }
+    <tr>
+        @{ ShoppingCart newShoppingCart = new ShoppingCart();}
+        @using (Html.BeginForm("CreateShoppingCart", "ShoppingCart", FormMethod.Post))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newShoppingCart.ShoppingCart_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newShoppingCart.ShoppingCart_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newShoppingCart.Albums_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newShoppingCart.Albums_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newShoppingCart.Clothing_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newShoppingCart.Clothing_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newShoppingCart.Instruments_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newShoppingCart.Instruments_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newShoppingCart.User_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newShoppingCart.User_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("???", "DeleteShoppingCart", new { Delete_ShoppingCart = newShoppingCart.ShoppingCart_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+
+
+
+</table>
+

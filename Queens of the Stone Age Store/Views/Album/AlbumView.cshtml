@@ -7,7 +7,6 @@
 <h2>Album View</h2>
 <table class="table table-striped">
     <tr>
-        <th>Album_ID</th>
         <th>Album Name</th>
         <th>Album Description</th>
         <th>Album Price</th>
@@ -19,14 +18,8 @@
         <tr>
             @using (Html.BeginForm("UpdateAlbum", "Album", FormMethod.Post))
             {
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.Albums_ID, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.Albums_ID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </td>
+
+             @Html.HiddenFor(model => _AlbumInfo.Albums_ID)    
                 <td>
                     <div class="form-group">
                         <div class="col-md-10">
@@ -69,6 +62,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Delete", "DeleteAlbum", new { Delete_Album = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Send to cart", "GetAlbumID", new { _GetID = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
                 </td>
                 <td>
                     <div class="form-group">
@@ -84,14 +78,9 @@
         @{ Album newAlbum = new Album();}
         @using (Html.BeginForm("CreateAlbum", "Album", FormMethod.Post))
         {
-            <td>
-                <div class="form-group">
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => newAlbum.Albums_ID, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => newAlbum.Albums_ID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </td>
+           
+         @Html.HiddenFor(model => newAlbum.Albums_ID) 
+                        
             <td>
                 <div class="form-group">
                     <div class="col-md-10">
@@ -144,6 +133,5 @@
             </td>
         }
     </tr>
-
 </table>
 

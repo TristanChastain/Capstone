@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Queens_of_the_Stone_Age_Store.Models
+namespace BLL.Objects
 {
-    public class Instruments
+   public class instrumentsBLO
     {
         public int Instruments_ID { get; set; }
         public string InstrumentName { get; set; }

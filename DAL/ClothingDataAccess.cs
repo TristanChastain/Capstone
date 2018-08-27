@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using DAL;
+using ErrorLogger;
 
 namespace DAL
 {
@@ -33,9 +34,10 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
             if (yes == true)
             {
@@ -72,9 +74,10 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
             return _clothinglist;
         }
@@ -99,9 +102,10 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
         }
         public void UpdateClothing(clothingDAO clothingToUpdate)
@@ -125,9 +129,34 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+        }
+        public void GetClothingID(shoppingcartDAO clothingidToGet)
+        {
+            int GetClothingID = new int();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_GetClothingID", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@Clothing_ID", clothingidToGet.Clothing_ID);
+                        _command.Parameters.AddWithValue("@User_ID", clothingidToGet.User_ID);
+                        _connection.Open();
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
         }
     }

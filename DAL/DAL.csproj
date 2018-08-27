@@ -47,13 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlbumDataAccess.cs" />
+    <Compile Include="BandMemberDataAccess.cs" />
     <Compile Include="ClothingDataAccess.cs" />
     <Compile Include="InstrumentDataAccess.cs" />
     <Compile Include="Objects\albumDAO.cs" />
+    <Compile Include="Objects\bandmembersDAO.cs" />
     <Compile Include="Objects\clothingDAO.cs" />
     <Compile Include="Objects\instrumentsDAO.cs" />
+    <Compile Include="Objects\shoppingcartDAO.cs" />
     <Compile Include="Objects\userDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCartDataAccess.cs" />
     <Compile Include="UserDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>

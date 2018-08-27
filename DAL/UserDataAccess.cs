@@ -32,9 +32,10 @@ namespace DAL.Objects
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
             if (yes == true)
             {
@@ -69,9 +70,10 @@ namespace DAL.Objects
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
             return _userlist;
         }
@@ -81,7 +83,7 @@ namespace DAL.Objects
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("CreateUser", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_CreateUser", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@Username", userToCreate.Username);
@@ -94,9 +96,10 @@ namespace DAL.Objects
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
         }
         public void UpdateUser(userDAO userToUpdate)
@@ -118,9 +121,10 @@ namespace DAL.Objects
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception _Error)
             {
-
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
             }
         }
         public userDAO Login(userDAO _userLogin)

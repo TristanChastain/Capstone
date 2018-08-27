@@ -39,5 +39,45 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             }
             return RedirectToAction("ManyView","Home");
         }
+        [HttpGet]
+        public ActionResult UserView()
+        {
+            UserViewModel _ViewModelUser = new UserViewModel();
+            _ViewModelUser.UserList = _mapper._UserMap(_UserDataAccess.GetAllUsers());
+                return View(_ViewModelUser);
+        }
+        public ActionResult DeleteUser(int Delete_User)
+        {
+            if ((int)Session["Role_ID"] == 3)
+            {
+                userDAO _DeleteUser = new userDAO();
+                _DeleteUser.User_ID = Delete_User;
+                _UserDataAccess.DeleteUser(_DeleteUser);
+            }
+            return RedirectToAction("UserView");
+        }
+        public ActionResult RegisterUser(User newUser)
+        {
+            //if ((int)Session["Role_ID"] == 3 || (int)Session["Role_ID"] == 2)
+            {
+                userDAO UserToCreate = _mapper.SingleUser(newUser);
+                _UserDataAccess.Createuser(UserToCreate);
+            }
+            return RedirectToAction("UserView");
+        }
+        public ActionResult UpdateUser(User _UserInfo)
+        {
+            if ((int)Session["Role_ID"] == 3 || (int)Session["Role_ID"] == 2)
+            {
+                userDAO _recievedUser = _mapper.SingleUser(_UserInfo);
+                _UserDataAccess.UpdateUser(_recievedUser);
+            }
+            return RedirectToAction("UserView");
+        }
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("UserLogin");
+        }
     }
 }

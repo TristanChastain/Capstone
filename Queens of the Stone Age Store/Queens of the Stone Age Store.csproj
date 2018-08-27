@@ -149,20 +149,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
+    <Compile Include="Controllers\BandMemberController.cs" />
     <Compile Include="Controllers\ClothingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstrumentsController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumViewModel.cs" />
+    <Compile Include="Models\BandMembers.cs" />
+    <Compile Include="Models\BandMembersViewModel.cs" />
     <Compile Include="Models\Clothing.cs" />
     <Compile Include="Models\ClothingViewModel.cs" />
     <Compile Include="Models\Instruments.cs" />
     <Compile Include="Models\InstrumentsViewModel.cs" />
     <Compile Include="Models\Mapper.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,8 +217,11 @@
     <Content Include="Views\Album\AlbumView.cshtml" />
     <Content Include="Views\Clothing\ClothingView.cshtml" />
     <Content Include="Views\Instruments\InstrumentsView.cshtml" />
-    <Content Include="Views\User\UserView.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
+    <Content Include="Views\BandMember\BandMemberView.cshtml" />
+    <Content Include="Views\User\UserView.cshtml" />
+    <Content Include="Views\ShoppingCart\ShoppingCartView.cshtml" />
+    <Content Include="Views\User\RegisterUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -231,6 +240,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{9c39fe0a-1c9d-4c65-8143-734a882abd9d}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{925c31ad-c451-465c-8731-8060c36f4892}</Project>
       <Name>DAL</Name>

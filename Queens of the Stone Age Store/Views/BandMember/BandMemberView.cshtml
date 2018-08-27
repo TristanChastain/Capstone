@@ -1,0 +1,118 @@
+﻿@model Queens_of_the_Stone_Age_Store.Models.BandMembersViewModel
+@using Queens_of_the_Stone_Age_Store.Models
+@{
+    ViewBag.Title = "BandMemberView";
+}
+
+<h2>BandMemberView</h2>
+<table class="table table-striped">
+    <tr>
+        <th>MemberName</th>
+        <th>MemberBio</th>
+        <th>DateOfBirth</th>
+        <th>BirthLocation</th>
+    </tr>
+    @foreach (BandMembers _MemberInfo in Model.MembersList)
+    {
+    <tr>
+        @using (Html.BeginForm("UpdateMember", "BandMember", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => _MemberInfo.BandMembers_ID)
+            
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _MemberInfo.MemberName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _MemberInfo.MemberName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _MemberInfo.MemberBio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _MemberInfo.MemberBio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _MemberInfo.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _MemberInfo.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _MemberInfo.BirthLocation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _MemberInfo.BirthLocation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteMember", new { Delete_Member = _MemberInfo.BandMembers_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+         }
+         </tr>      
+    }
+    <tr>
+        @{ BandMembers newMember = new BandMembers();}
+        @using (Html.BeginForm("CreateMember", "BandMember", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => newMember.BandMembers_ID)
+           
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newMember.MemberName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newMember.MemberName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newMember.MemberBio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newMember.MemberBio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newMember.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newMember.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => newMember.BirthLocation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => newMember.BirthLocation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("???", "DeleteMember", new { Delete_Member = newMember.BandMembers_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </td>
+        }
+    </tr>
+</table>
+
