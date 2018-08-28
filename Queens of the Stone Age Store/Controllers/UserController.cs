@@ -56,10 +56,17 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             }
             return RedirectToAction("UserView");
         }
+        [HttpGet]
+        public ActionResult RegisterUser()
+        {
+            return View("");
+        }
+        [HttpPost]
         public ActionResult RegisterUser(User newUser)
         {
             //if ((int)Session["Role_ID"] == 3 || (int)Session["Role_ID"] == 2)
             {
+                newUser.Role_ID = 1;
                 userDAO UserToCreate = _mapper.SingleUser(newUser);
                 _UserDataAccess.Createuser(UserToCreate);
             }

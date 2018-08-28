@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +10,12 @@ namespace BLL
 {
     public class ShoppingCartLogic
     {
-        public int Calc (shoppingcartBLO _notsureyet)
+        public int Calc (shoppingcartBLO _CartInfo)
         {
-                        
+            foreach (shoppingcartBLO _singleProduct in _CartInfo)
+            {
+
+            }
         }
     }
-}*/
+}
