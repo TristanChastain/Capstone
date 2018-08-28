@@ -15,6 +15,8 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
     {
         static Mapper _mapper = new Mapper();
         static ShoppingCartDataAccess _shoppingcartDataAccess = new ShoppingCartDataAccess();
+        //static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
+
         [HttpGet]
         public ActionResult ShoppingCartView(int User_ID)
         {
@@ -52,11 +54,10 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             }
             return RedirectToAction("ShoppingCartView");
         }
-        //static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
-       // ActionResult Checkout(shoppingcartBLO _totalPrice)
-       // {
-       //    int TotalPrice = _ShoppingCartLogic.Calc(ShoppingCartLogicMap);
-       // }
-
+       /*static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
+        ActionResult Checkout(shoppingcartBLO _totalPrice)
+        {
+           int TotalPrice = _ShoppingCartLogic.Calc(ShoppingCartLogicMap);
+        }*/
     }
 }
