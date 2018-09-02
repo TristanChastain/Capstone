@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </td>
+                        @Html.HiddenFor(model => _InstrumentsInfo.InstrumentsQuantity, new { htmlAttributes = new { @class = "form-control" } })              
             <td>
                 @Html.ActionLink("Delete", "DeleteInstrument", new { Delete_Instrument = _InstrumentsInfo.Instruments_ID }, new { @class = "btn btn-danger" })
                 @Html.ActionLink("Send to cart", "GetInstrumentID", new { _GetID = _InstrumentsInfo.Instruments_ID }, new { @class = "btn btn-danger" })
@@ -85,6 +86,7 @@
                     </div>
                 </div>
             </td>
+                        @Html.HiddenFor(model => newInstruments.InstrumentsQuantity, new { htmlAttributes = new { @class = "form-control" } })                 
             <td>
                 @Html.ActionLink("???", "DeleteInstrument", new { Delete_Instrument = newInstruments.Instruments_ID }, new { @class = "btn btn-danger" })
             </td>

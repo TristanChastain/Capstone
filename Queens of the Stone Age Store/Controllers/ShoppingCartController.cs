@@ -15,15 +15,21 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
     {
         static Mapper _mapper = new Mapper();
         static ShoppingCartDataAccess _shoppingcartDataAccess = new ShoppingCartDataAccess();
-        static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
+        //static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
 
         [HttpGet]
         public ActionResult ShoppingCartView(int User_ID)
         {
             ShoppingCartViewModel _ShoppingCartViewModel = new ShoppingCartViewModel();
             _ShoppingCartViewModel.ShoppingCartList = _mapper.ShoppingCartMap
-                (_shoppingcartDataAccess.GetAllShoppingCarts(User_ID));
+                (_shoppingcartDataAccess.GetUserShoppingCart(User_ID));
             return View(_ShoppingCartViewModel);
+        }
+        public ActionResult AllShopingCartsView()
+        {
+            ShoppingCartViewModel _shoppingCartModelView = new ShoppingCartViewModel();
+            _shoppingCartModelView.ShoppingCartList = _mapper.ShoppingCartMap(_shoppingcartDataAccess.GetAllShoppingCarts());
+            return View(_shoppingCartModelView);
         }
         public ActionResult DeleteShoppingCart(int Delete_ShoppingCart)
         {
@@ -33,7 +39,7 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
                 _DeleteShoppingCart.ShoppingCart_ID = Delete_ShoppingCart;
                 _shoppingcartDataAccess.DeleteShoppingCart(_DeleteShoppingCart);
             }
-            return RedirectToAction("ShoppingCartView");
+            return RedirectToAction("AllShopingCartsView");
         }
         [HttpPost]
         public ActionResult CreateShoppingCart(ShoppingCart newShoppingCart)
@@ -54,10 +60,10 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             }
             return RedirectToAction("ShoppingCartView");
         }
-       static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
+       /*static ShoppingCartLogic _ShoppingCartLogic = new ShoppingCartLogic();
         ActionResult Checkout(shoppingcartBLO _totalPrice)
         {
            int TotalPrice = _ShoppingCartLogic.Calc(ShoppingCartLogicMap);
-        }
+        }*/
     }
 }

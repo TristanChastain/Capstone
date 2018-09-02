@@ -12,5 +12,6 @@ namespace BLL.Objects
         public string InstrumentName { get; set; }
         public string InstrumentDescription { get; set; }
         public decimal InstrumentPrice { get; set; }
+        public int InstrumentsQuantity { get; set; }
     }
 }

@@ -15,72 +15,73 @@
     </tr>
     @foreach (Album _AlbumInfo in Model.AlbumList)
     {
-        <tr>
-            @using (Html.BeginForm("UpdateAlbum", "Album", FormMethod.Post))
-            {
+    <tr>
+        @using (Html.BeginForm("UpdateAlbum", "Album", FormMethod.Post))
+        {
 
-             @Html.HiddenFor(model => _AlbumInfo.Albums_ID)    
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.AlbumName, "", new { @class = "text-danger" })
-                        </div>
+            @Html.HiddenFor(model => _AlbumInfo.Albums_ID)
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _AlbumInfo.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _AlbumInfo.AlbumName, "", new { @class = "text-danger" })
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.AlbumDescription, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.AlbumDescription, "", new { @class = "text-danger" })
-                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _AlbumInfo.AlbumDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _AlbumInfo.AlbumDescription, "", new { @class = "text-danger" })
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.AlbumPrice, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.AlbumPrice, "", new { @class = "text-danger" })
-                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _AlbumInfo.AlbumPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _AlbumInfo.AlbumPrice, "", new { @class = "text-danger" })
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.YearReleased, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.YearReleased, "", new { @class = "text-danger" })
-                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _AlbumInfo.YearReleased, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _AlbumInfo.YearReleased, "", new { @class = "text-danger" })
                     </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => _AlbumInfo.NumberOfSongs, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => _AlbumInfo.NumberOfSongs, "", new { @class = "text-danger" })
-                        </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => _AlbumInfo.NumberOfSongs, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => _AlbumInfo.NumberOfSongs, "", new { @class = "text-danger" })
                     </div>
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "DeleteAlbum", new { Delete_Album = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Send to cart", "GetAlbumID", new { _GetID = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
-                </td>
-                <td>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Update" class="btn btn-info" />
-                        </div>
+                </div>
+            </td>
+                        @Html.HiddenFor(model => _AlbumInfo.AlbumQuantity, new { htmlAttributes = new { @class = "form-control" } })           
+            <td>
+                @Html.ActionLink("Delete", "DeleteAlbum", new { Delete_Album = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Send to cart", "SendAlbumsID", new { _SendID = _AlbumInfo.Albums_ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Update" class="btn btn-info" />
                     </div>
-                </td>
-            }
-        </tr>
+                </div>
+            </td>
+        }
+    </tr>
     }
     <tr>
         @{ Album newAlbum = new Album();}
         @using (Html.BeginForm("CreateAlbum", "Album", FormMethod.Post))
         {
-           
-         @Html.HiddenFor(model => newAlbum.Albums_ID) 
-                        
+
+            @Html.HiddenFor(model => newAlbum.Albums_ID)
+
             <td>
                 <div class="form-group">
                     <div class="col-md-10">
@@ -121,6 +122,7 @@
                     </div>
                 </div>
             </td>
+                        @Html.HiddenFor(model => newAlbum.AlbumQuantity, new { htmlAttributes = new { @class = "form-control" } })
             <td>
                 @Html.ActionLink("???", "DeleteAlbum", new { Delete_Album = newAlbum.Albums_ID }, new { @class = "btn btn-danger" })
             </td>

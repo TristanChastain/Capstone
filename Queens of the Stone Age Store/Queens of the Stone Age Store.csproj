@@ -222,6 +222,7 @@
     <Content Include="Views\User\UserView.cshtml" />
     <Content Include="Views\ShoppingCart\ShoppingCartView.cshtml" />
     <Content Include="Views\User\RegisterUser.cshtml" />
+    <Content Include="Views\ShoppingCart\AllShopingCartsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

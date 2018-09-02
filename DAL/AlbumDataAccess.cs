@@ -68,6 +68,7 @@ namespace DAL
                                 _albumToList.AlbumPrice = _reader.GetDecimal(3);
                                 _albumToList.YearReleased = _reader.GetDateTime(4);
                                 _albumToList.NumberOfSongs = _reader.GetInt32(5);
+                                _albumToList.AlbumQuantity = _reader.GetInt32(6);
                                 _albumlist.Add(_albumToList);
                             }
                         }
@@ -95,6 +96,7 @@ namespace DAL
                         _command.Parameters.AddWithValue("@Price", albumToCreate.AlbumPrice);
                         _command.Parameters.AddWithValue("@YearReleased", albumToCreate.YearReleased);
                         _command.Parameters.AddWithValue("@NumberOfSongs", albumToCreate.NumberOfSongs);
+                        _command.Parameters.AddWithValue("@AlbumQuantity", albumToCreate.AlbumQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -123,6 +125,7 @@ namespace DAL
                         _command.Parameters.AddWithValue("@Price", albumToUpdate.AlbumPrice);
                         _command.Parameters.AddWithValue("@YearReleased", albumToUpdate.YearReleased);
                         _command.Parameters.AddWithValue("@NumberOfSongs", albumToUpdate.NumberOfSongs);
+                        _command.Parameters.AddWithValue("@AlbumQuantity", albumToUpdate.AlbumQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -147,6 +150,30 @@ namespace DAL
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@Albums_ID", albumidToGet.Albums_ID);
                         _command.Parameters.AddWithValue("@User_ID", albumidToGet.User_ID);
+                        _connection.Open();
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+        }
+        public void SendAlbumsID(shoppingcartDAO albumidToSend)
+        {
+            int SendAlbumsID = new int();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_SendAlbumsID", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@Albums_ID", albumidToSend.Albums_ID);
+                        _command.Parameters.AddWithValue("@User_ID", albumidToSend.User_ID);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();

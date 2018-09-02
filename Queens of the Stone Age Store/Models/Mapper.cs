@@ -23,6 +23,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumToView.AlbumPrice = _albumToMap.AlbumPrice;
                 _albumToView.YearReleased = _albumToMap.YearReleased;
                 _albumToView.NumberOfSongs = _albumToMap.NumberOfSongs;
+                _albumToView.AlbumQuantity = _albumToMap.AlbumQuantity;
                 _albumListToReturn.Add(_albumToView);
             }
             return _albumListToReturn;
@@ -39,6 +40,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _clothingToView.Sizes = _clothingToMap.Sizes;
                 _clothingToView.ClothingPrice = _clothingToMap.ClothingPrice;
                 _clothingToView.ClothingName = _clothingToMap.ClothingName;
+                _clothingToView.ClothingQuantity = _clothingToMap.ClothingQuantity;
                 _clothingListToReturn.Add(_clothingToView);
             }
             return _clothingListToReturn;
@@ -53,6 +55,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentsToView.InstrumentName = _instrumentsToMap.InstrumentName;
                 _instrumentsToView.InstrumentDescription = _instrumentsToMap.InstrumentDescription;
                 _instrumentsToView.InstrumentPrice = _instrumentsToMap.InstrumentPrice;
+                _instrumentsToView.InstrumentsQuantity = _instrumentsToMap.InstrumentsQuantity;
                 _instrumentsListToReturn.Add(_instrumentsToView);
             }
             return _instrumentsListToReturn;
@@ -82,6 +85,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumToView.AlbumPrice = _SingleAlbumToMap.AlbumPrice;
                 _albumToView.YearReleased = _SingleAlbumToMap.YearReleased;
                 _albumToView.NumberOfSongs = _SingleAlbumToMap.NumberOfSongs;
+                _albumToView.AlbumQuantity = _SingleAlbumToMap.AlbumQuantity;
                 AlbumToReturn = _albumToView;
             }
             return AlbumToReturn;
@@ -97,6 +101,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _clothingToView.Sizes = _SingleClothingToMap.Sizes;
                 _clothingToView.ClothingPrice = _SingleClothingToMap.ClothingPrice;
                 _clothingToView.ClothingName = _SingleClothingToMap.ClothingName;
+                _clothingToView.ClothingQuantity = _SingleClothingToMap.ClothingQuantity;
                 ClothingToReturn = _clothingToView;
             }
             return ClothingToReturn;
@@ -110,6 +115,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentsToView.InstrumentName = _SingleInstrumentToMap.InstrumentName;
                 _instrumentsToView.InstrumentDescription = _SingleInstrumentToMap.InstrumentDescription;
                 _instrumentsToView.InstrumentPrice = _SingleInstrumentToMap.InstrumentPrice;
+                _instrumentsToView.InstrumentsQuantity = _SingleInstrumentToMap.InstrumentsQuantity;
                 InstrumentsToReturn = _instrumentsToView;
             }
             return InstrumentsToReturn;
@@ -138,6 +144,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumToView.AlbumPrice = _SelectAlbumToMap.AlbumPrice;
                 _albumToView.YearReleased = _SelectAlbumToMap.YearReleased;
                 _albumToView.NumberOfSongs = _SelectAlbumToMap.NumberOfSongs;
+                _albumToView.AlbumQuantity = _SelectAlbumToMap.AlbumQuantity;
                 AlbumToReturn = _albumToView;
             }
             return AlbumToReturn;
@@ -153,6 +160,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _clothingToView.Sizes = _SelectClothingToMap.Sizes;
                 _clothingToView.ClothingPrice = _SelectClothingToMap.ClothingPrice;
                 _clothingToView.ClothingName = _SelectClothingToMap.ClothingName;
+                _clothingToView.ClothingQuantity = _SelectClothingToMap.ClothingQuantity;
                 ClothingToReturn = _clothingToView;
             }
             return ClothingToReturn;
@@ -166,6 +174,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentsToView.InstrumentName = _SelectInstrumentsToMap.InstrumentName;
                 _instrumentsToView.InstrumentDescription = _SelectInstrumentsToMap.InstrumentDescription;
                 _instrumentsToView.InstrumentPrice = _SelectInstrumentsToMap.InstrumentPrice;
+                _instrumentsToView.InstrumentsQuantity = _SelectInstrumentsToMap.InstrumentsQuantity;
                 InstrumentsToReturn = _instrumentsToView;
             }
             return InstrumentsToReturn;
@@ -280,6 +289,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumLogicView.AlbumPrice = _SingleAlbumLogic.AlbumPrice;
                 _albumLogicView.YearReleased = _SingleAlbumLogic.YearReleased;
                 _albumLogicView.NumberOfSongs = _SingleAlbumLogic.NumberOfSongs;
+                _albumLogicView.AlbumQuantity = _SingleAlbumLogic.AlbumQuantity;
             }
             return LogicToReturn;
         }
@@ -294,6 +304,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumLogicView.AlbumPrice = _SelectAlbumLogic.AlbumPrice;
                 _albumLogicView.YearReleased = _SelectAlbumLogic.YearReleased;
                 _albumLogicView.NumberOfSongs = _SelectAlbumLogic.NumberOfSongs;
+                _albumLogicView.AlbumQuantity = _SelectAlbumLogic.AlbumQuantity;
             }
             return LogicToReturn;
         }
@@ -301,13 +312,14 @@ namespace Queens_of_the_Stone_Age_Store.Models
         {
             clothingBLO LogicToReturn = new clothingBLO();
             {
-                clothingBLO _clolthingLogicView = new clothingBLO();
-                _clolthingLogicView.Clothing_ID = _SingleClothingLogic.Clothing_ID;
-                _clolthingLogicView.TypeOFClothing = _SingleClothingLogic.TypeOFClothing;
-                _clolthingLogicView.ClothingDescription = _SingleClothingLogic.ClothingDescription;
-                _clolthingLogicView.Sizes = _SingleClothingLogic.Sizes;
-                _clolthingLogicView.ClothingPrice = _SingleClothingLogic.ClothingPrice;
-                _clolthingLogicView.ClothingName = _SingleClothingLogic.ClothingName;
+                clothingBLO _clothingLogicView = new clothingBLO();
+                _clothingLogicView.Clothing_ID = _SingleClothingLogic.Clothing_ID;
+                _clothingLogicView.TypeOFClothing = _SingleClothingLogic.TypeOFClothing;
+                _clothingLogicView.ClothingDescription = _SingleClothingLogic.ClothingDescription;
+                _clothingLogicView.Sizes = _SingleClothingLogic.Sizes;
+                _clothingLogicView.ClothingPrice = _SingleClothingLogic.ClothingPrice;
+                _clothingLogicView.ClothingName = _SingleClothingLogic.ClothingName;
+                _clothingLogicView.ClothingQuantity = _SingleClothingLogic.ClothingQuantity;
             }
             return LogicToReturn;
         }
@@ -322,6 +334,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _clothingLogicView.Sizes = _SelectClothingLogic.Sizes;
                 _clothingLogicView.ClothingPrice = _SelectClothingLogic.ClothingPrice;
                 _clothingLogicView.ClothingName = _SelectClothingLogic.ClothingName;
+                _clothingLogicView.ClothingQuantity = _SelectClothingLogic.ClothingQuantity;
             }
             return LogicToReturn;
         }
@@ -334,6 +347,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentsLogicView.InstrumentName = _SingleInstrumentLogic.InstrumentName;
                 _instrumentsLogicView.InstrumentDescription = _SingleInstrumentLogic.InstrumentDescription;
                 _instrumentsLogicView.InstrumentPrice = _SingleInstrumentLogic.InstrumentPrice;
+                _instrumentsLogicView.InstrumentsQuantity = _SingleInstrumentLogic.InstrumentsQuantity;
             }
             return LogicToReturn;
         }
@@ -346,6 +360,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentLogicView.InstrumentName = _SelectInstrumentLogic.InstrumentName;
                 _instrumentLogicView.InstrumentDescription = _SelectInstrumentLogic.InstrumentDescription;
                 _instrumentLogicView.InstrumentPrice = _SelectInstrumentLogic.InstrumentPrice;
+                _instrumentLogicView.InstrumentsQuantity = _SelectInstrumentLogic.InstrumentsQuantity;
             }
             return LogicToReturn;
         }
@@ -377,6 +392,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _albumLogicView.AlbumPrice = _albumToMap.AlbumPrice;
                 _albumLogicView.YearReleased = _albumToMap.YearReleased;
                 _albumLogicView.NumberOfSongs = _albumToMap.NumberOfSongs;
+                _albumLogicView.AlbumQuantity = _albumToMap.AlbumQuantity;
                 _albumListToReturn.Add(_albumLogicView);
             }
             return _albumListToReturn;
@@ -393,6 +409,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _clothingLogicView.Sizes = _clothingToMap.Sizes;
                 _clothingLogicView.ClothingPrice = _clothingToMap.ClothingPrice;
                 _clothingLogicView.ClothingName = _clothingToMap.ClothingName;
+                _clothingLogicView.ClothingQuantity = _clothingToMap.ClothingQuantity;
                 _clothingListToReturn.Add(_clothingLogicView);
             }
             return _clothingListToReturn;
@@ -407,6 +424,7 @@ namespace Queens_of_the_Stone_Age_Store.Models
                 _instrumentsLogicView.InstrumentName = _instrumentsToMap.InstrumentName;
                 _instrumentsLogicView.InstrumentDescription = _instrumentsToMap.InstrumentDescription;
                 _instrumentsLogicView.InstrumentPrice = _instrumentsToMap.InstrumentPrice;
+                _instrumentsLogicView.InstrumentsQuantity = _instrumentsToMap.InstrumentsQuantity;
                 _instrumentsListToReturn.Add(_instrumentsLogicView);
             }
             return _instrumentsListToReturn;

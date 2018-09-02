@@ -14,5 +14,6 @@ namespace BLL.Objects
         public decimal AlbumPrice { get; set; }
         public DateTime YearReleased { get; set; }
         public int NumberOfSongs { get; set; }
+        public int AlbumQuantity { get; set; }
     }
 }

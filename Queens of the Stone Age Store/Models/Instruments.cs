@@ -11,5 +11,6 @@ namespace Queens_of_the_Stone_Age_Store.Models
         public string InstrumentName { get; set; }
         public string InstrumentDescription { get; set; }
         public decimal InstrumentPrice { get; set; }
+        public int InstrumentsQuantity { get; set; }
     }
 }

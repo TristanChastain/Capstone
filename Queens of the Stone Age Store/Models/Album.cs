@@ -13,5 +13,6 @@ namespace Queens_of_the_Stone_Age_Store.Models
         public decimal AlbumPrice { get; set; }
         public DateTime YearReleased { get; set; }
         public int NumberOfSongs { get; set; }
+        public int AlbumQuantity { get; set; }
     }
 }

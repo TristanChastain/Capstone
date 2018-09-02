@@ -58,6 +58,14 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             _AlbumDataAccess.GetAlbumID(cartToGet);
             return RedirectToAction("AlbumView");
         }
+        public ActionResult SendAlbumsID(int _SendID)
+        {
+            shoppingcartDAO cartToSend = new shoppingcartDAO();
+            cartToSend.Albums_ID = _SendID;
+            cartToSend.User_ID = (int)Session["User_ID"];
+            _AlbumDataAccess.SendAlbumsID(cartToSend);
+            return RedirectToAction("AlbumView");
+        }
         
     }
 }

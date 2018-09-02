@@ -23,7 +23,7 @@ namespace DAL
             {
                 using (SqlConnection _connection = new SqlConnection(connectionstring))
                 {
-                    using (SqlCommand _command = new SqlCommand("Sp_DeletShoppingCart", _connection))
+                    using (SqlCommand _command = new SqlCommand("Sp_DeleteShoppingCart", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@ShoppingCart_ID", cartToDelete.ShoppingCart_ID);
@@ -45,7 +45,7 @@ namespace DAL
             }
             return yes;
         }
-        public List<shoppingcartDAO> GetAllShoppingCarts(int User_ID)
+        public List<shoppingcartDAO> GetUserShoppingCart(int User_ID)
         {
             List<shoppingcartDAO> _shoppingcartlist = new List<shoppingcartDAO>();
             try
@@ -163,6 +163,40 @@ namespace DAL
                 Log.Errorlogger(_Error);
             }
             return _ListPrices;
+        }
+        public List<shoppingcartDAO> GetAllShoppingCarts()
+        {
+            List<shoppingcartDAO> _cartList = new List<shoppingcartDAO>();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_ViewAllShoppingCarts", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _connection.Open();
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            while (_reader.Read())
+                            {
+                                shoppingcartDAO _cartToList = new shoppingcartDAO();
+                                _cartToList.ShoppingCart_ID = _reader.GetInt32(0);
+                                _cartToList.Albums_ID = _reader.GetInt32(1);
+                                _cartToList.Clothing_ID = _reader.GetInt32(2);
+                                _cartToList.Instruments_ID = _reader.GetInt32(3);
+                                _cartToList.User_ID = _reader.GetInt32(4);
+                                _cartList.Add(_cartToList);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+            return _cartList;
         }
     }
 }

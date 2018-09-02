@@ -64,6 +64,7 @@ namespace DAL.Objects
                                 _instrumentsToList.InstrumentName = _reader.GetString(1);
                                 _instrumentsToList.InstrumentDescription = _reader.GetString(2);
                                 _instrumentsToList.InstrumentPrice = _reader.GetDecimal(3);
+                                _instrumentsToList.InstrumentsQuantity = _reader.GetInt32(4);
                                 _instrumentslist.Add(_instrumentsToList);
                             }
                         }
@@ -89,6 +90,7 @@ namespace DAL.Objects
                         _command.Parameters.AddWithValue("@Name", instrumentsToCreate.InstrumentName);
                         _command.Parameters.AddWithValue("@Description", instrumentsToCreate.InstrumentDescription);
                         _command.Parameters.AddWithValue("@Price", instrumentsToCreate.InstrumentPrice);
+                        _command.Parameters.AddWithValue("@InstrumentsQuantity", instrumentsToCreate.InstrumentsQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -115,6 +117,7 @@ namespace DAL.Objects
                         _command.Parameters.AddWithValue("@Name", instrumentsToUpdate.InstrumentName);
                         _command.Parameters.AddWithValue("@Description", instrumentsToUpdate.InstrumentDescription);
                         _command.Parameters.AddWithValue("@Price", instrumentsToUpdate.InstrumentPrice);
+                        _command.Parameters.AddWithValue("@InstrumentsQuantity", instrumentsToUpdate.InstrumentsQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -140,18 +143,8 @@ namespace DAL.Objects
                         _command.Parameters.AddWithValue("@Instruments_ID", instrumentsidToGet.Instruments_ID);
                         _command.Parameters.AddWithValue("@User_ID", instrumentsidToGet.User_ID);
                         _connection.Open();
-                        using (SqlDataReader _reader = _command.ExecuteReader())
-                        {
-                            while (_reader.Read())
-                            {
-                                instrumentsDAO _GetIDInstruments = new instrumentsDAO();
-                                _GetIDInstruments.Instruments_ID = _reader.GetInt32(0);
-                                _GetIDInstruments.InstrumentName = _reader.GetString(1);
-                                _GetIDInstruments.InstrumentDescription = _reader.GetString(2);
-                                _GetIDInstruments.InstrumentPrice = _reader.GetInt32(3);
-                                GetInstrumentsID = _GetIDInstruments.Instruments_ID;
-                            }
-                        }
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
                     }
                 }
             }

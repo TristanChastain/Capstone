@@ -59,6 +59,14 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             _ClothingDataAccess.GetClothingID(cartToGet);
             return RedirectToAction("ClothingView");
         }
+        public ActionResult SendClothingID(int _SendID)
+        {
+            shoppingcartDAO cartToSend = new shoppingcartDAO();
+            cartToSend.Clothing_ID = _SendID;
+            cartToSend.User_ID = (int)Session["User_ID"];
+            _ClothingDataAccess.SendClothingID(cartToSend);
+            return RedirectToAction("ClothingView");
+        }
 
     }
 }

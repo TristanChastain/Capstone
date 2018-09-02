@@ -3,10 +3,12 @@
 }
 <h2>@ViewBag.Title.</h2>
 
+<h3>@Html.ActionLink("View All Carts", "AllShopingCartsView", "ShoppingCart")</h3>
 <h3>@Html.ActionLink("View Album", "AlbumView", "Album")</h3>
 <h3>@Html.ActionLink("View Clothing", "ClothingView", "Clothing")</h3>
 <h3>@Html.ActionLink("View Instruments", "InstrumentsView", "Instruments")</h3>
 <h3>@Html.ActionLink("View Members", "BandMemberView", "BandMember")</h3>
 <h3>@Html.ActionLink("View Users", "UserView", "User")</h3>
 <h3>@Html.ActionLink("View Cart", "ShoppingCartView", "ShoppingCart", new { User_ID = (int) Session["User_ID"] }, null)</h3>
+
 

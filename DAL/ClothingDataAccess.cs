@@ -68,6 +68,7 @@ namespace DAL
                                 _clothingToList.Sizes = _reader.GetString(3);
                                 _clothingToList.ClothingPrice = _reader.GetDecimal(4);
                                 _clothingToList.ClothingName = _reader.GetString(5);
+                                _clothingToList.ClothingQuantity = _reader.GetInt32(6);
                                 _clothinglist.Add(_clothingToList);
                             }
                         }
@@ -95,6 +96,7 @@ namespace DAL
                         _command.Parameters.AddWithValue("@Sizes", clothingToCreate.Sizes);
                         _command.Parameters.AddWithValue("@Price", clothingToCreate.ClothingPrice);
                         _command.Parameters.AddWithValue("@Name", clothingToCreate.ClothingName);
+                        _command.Parameters.AddWithValue("@ClothingQuantity", clothingToCreate.ClothingQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -123,6 +125,7 @@ namespace DAL
                         _command.Parameters.AddWithValue("@Sizes", clothingToUpdate.Sizes);
                         _command.Parameters.AddWithValue("@Price", clothingToUpdate.ClothingPrice);
                         _command.Parameters.AddWithValue("@Name", clothingToUpdate.ClothingName);
+                        _command.Parameters.AddWithValue("@ClothingQuantity", clothingToUpdate.ClothingQuantity);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();
@@ -147,6 +150,30 @@ namespace DAL
                         _command.CommandType = CommandType.StoredProcedure;
                         _command.Parameters.AddWithValue("@Clothing_ID", clothingidToGet.Clothing_ID);
                         _command.Parameters.AddWithValue("@User_ID", clothingidToGet.User_ID);
+                        _connection.Open();
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+        }
+        public void SendClothingID(shoppingcartDAO clothingidToSend)
+        {
+            int SendClothingID = new int();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_SendClothingID", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@Clothing_ID", clothingidToSend.Albums_ID);
+                        _command.Parameters.AddWithValue("@User_ID", clothingidToSend.User_ID);
                         _connection.Open();
                         _command.ExecuteNonQuery();
                         _connection.Close();

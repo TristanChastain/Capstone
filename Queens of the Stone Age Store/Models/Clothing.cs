@@ -13,5 +13,6 @@ namespace Queens_of_the_Stone_Age_Store.Models
         public string Sizes { get; set; }
         public decimal ClothingPrice { get; set; }
         public string ClothingName { get; set; }
+        public int ClothingQuantity { get; set; }
     }
 }
