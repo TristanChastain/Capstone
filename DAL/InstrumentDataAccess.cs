@@ -11,7 +11,7 @@ using ErrorLogger;
 
 namespace DAL.Objects
 {
-   public class InstrumentDataAccess
+    public class InstrumentDataAccess
     {
         static string connectionstring = ConfigurationManager.ConnectionStrings["QotSA Store"].ConnectionString;
         public bool DeleteInstruments(instrumentsDAO instrumentToDelete)
@@ -154,6 +154,30 @@ namespace DAL.Objects
                 Log.Errorlogger(_Error);
             }
             return GetInstrumentsID;
+        }
+        public void SendInstrumentID(shoppingcartDAO instrumentidToSend)
+        {
+            int SendInstrumentID = new int();
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_SendInstrumentID", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@Instruments_ID", instrumentidToSend.Instruments_ID);
+                        _command.Parameters.AddWithValue("@User_ID", instrumentidToSend.User_ID);
+                        _connection.Open();
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
     {
         static Mapper _mapper = new Mapper();
         static UserDataAccess _UserDataAccess = new UserDataAccess();
+        static ShoppingCartDataAccess _shoppingDataAccess = new ShoppingCartDataAccess();
         [HttpGet]
         public ActionResult ViewUser()
         {
@@ -69,8 +70,12 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
                 newUser.Role_ID = 1;
                 userDAO UserToCreate = _mapper.SingleUser(newUser);
                 _UserDataAccess.Createuser(UserToCreate);
+                /*userDAO CreateCart1 = new userDAO();
+                _UserDataAccess.CreateShoppingCartOnRegister1(CreateCart1);
+                shoppingcartDAO CreateCart2 = new shoppingcartDAO();
+                _shoppingDataAccess.CreateShoppingCartOnRegister2(CreateCart2);*/            
             }
-            return RedirectToAction("UserView");
+            return RedirectToAction("UserLogin");
         }
         public ActionResult UpdateUser(User _UserInfo)
         {

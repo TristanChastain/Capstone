@@ -172,7 +172,7 @@ namespace DAL
                     using (SqlCommand _command = new SqlCommand("Sp_SendClothingID", _connection))
                     {
                         _command.CommandType = CommandType.StoredProcedure;
-                        _command.Parameters.AddWithValue("@Clothing_ID", clothingidToSend.Albums_ID);
+                        _command.Parameters.AddWithValue("@Clothing_ID", clothingidToSend.Clothing_ID);
                         _command.Parameters.AddWithValue("@User_ID", clothingidToSend.User_ID);
                         _connection.Open();
                         _command.ExecuteNonQuery();

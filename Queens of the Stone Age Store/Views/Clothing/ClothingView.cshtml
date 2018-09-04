@@ -64,7 +64,7 @@
             @Html.HiddenFor(model => _ClothingInfo.ClothingQuantity, new { htmlAttributes = new { @class = "form-control" } })                      
             <td>
                 @Html.ActionLink("Delete", "DeleteClothing", new { Delete_Clothing = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
-                @Html.ActionLink("Send to cart", "GetClothingID", new { _GetID = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Send to cart", "SendClothingID", new { _SendID = _ClothingInfo.Clothing_ID }, new { @class = "btn btn-danger" })
             </td>
             <td>
                 <div class="form-group">

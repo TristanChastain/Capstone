@@ -12,5 +12,10 @@ namespace DAL.Objects
         public string Username { get; set; }
         public string Password { get; set; }
         public int Role_ID { get; set; }
-   }
+        public int ShoppingCart_ID { get; set; }
+        public int Albums_ID { get; set; }
+        public int Clothing_ID { get; set; }
+        public int Instruments_ID { get; set; }
+       
+    }
 }

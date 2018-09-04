@@ -198,5 +198,28 @@ namespace DAL
             }
             return _cartList;
         }
+        public void CreateShoppingCartOnRegister2(shoppingcartDAO shoppingCartFromRegister2)
+        {
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_CreateCartOnRegisterPart2", _connection))
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("@User_ID", shoppingCartFromRegister2.User_ID);
+                        _connection.Open();
+                        _command.ExecuteNonQuery();
+                        _connection.Close();
+                        _connection.Dispose();
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+        }
     }
 }

@@ -164,5 +164,38 @@ namespace DAL.Objects
             }
             return (_userLogin);
         }
+        public userDAO CreateShoppingCartOnRegister1(userDAO shoppingCartFromRegister1)
+        {
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(connectionstring))
+                {
+                    using (SqlCommand _command = new SqlCommand("Sp_CreateCartOnRegisterPart1", _connection))                 
+                    {
+                        _command.CommandType = CommandType.StoredProcedure;
+                        _command.Parameters.AddWithValue("Username", shoppingCartFromRegister1.Username);
+                        using (SqlDataReader _reader = _command.ExecuteReader())
+                        {
+                            while (_reader.Read())
+                            {
+                                userDAO _dataToRead = new userDAO();
+                                _dataToRead.User_ID = _reader.GetInt32(0);
+                                _dataToRead.Username = _reader.GetString(1);
+                                _dataToRead.Password = _reader.GetString(2);
+                                _dataToRead.Role_ID = _reader.GetInt32(3);
+                                shoppingCartFromRegister1 = _dataToRead;
+                                
+                            }                     
+                        }
+                    }
+                }
+            }
+            catch (Exception _Error)
+            {
+                Error_Logger Log = new Error_Logger();
+                Log.Errorlogger(_Error);
+            }
+            return (shoppingCartFromRegister1);
+        }
     }
 }

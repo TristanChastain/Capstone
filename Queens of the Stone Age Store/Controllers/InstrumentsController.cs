@@ -59,5 +59,13 @@ namespace Queens_of_the_Stone_Age_Store.Controllers
             _InstrumentDataAccess.GetInstrumentsID(cartToGet);
             return RedirectToAction("InstrumentsView");
         }
+        public ActionResult SendInstrumentID(int _SendID)
+        {
+            shoppingcartDAO cartToSend = new shoppingcartDAO();
+            cartToSend.Instruments_ID = _SendID;
+            cartToSend.User_ID = (int)Session["User_ID"];
+            _InstrumentDataAccess.SendInstrumentID(cartToSend);
+            return RedirectToAction("InstrumentsView");
+        }
     }
 }
