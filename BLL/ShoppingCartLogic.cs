@@ -11,7 +11,7 @@ namespace BLL
     public class ShoppingCartLogic
     {
         public int Calc (List<shoppingcartBLO> _CartInfo)
-        {
+        {//
             foreach (shoppingcartBLO _singleProduct in _CartInfo)
             {
                 int PantSubTotal; int ShirtSubTotal; int SubTotal; int AllSubTotal = 0; int Shipping = 0;
